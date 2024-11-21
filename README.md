@@ -141,10 +141,6 @@ Run `analyze_signal.m`:
 
 ---
 
-## **License**
-This project is licensed under the MIT License.
-
----
 
 ## **Acknowledgments**
 Special thanks to **Université Paris-Saclay** and **Mohammed El-Korso** for the guidance provided in this project.
