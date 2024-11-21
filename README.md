@@ -1,85 +1,105 @@
-Here’s an improved version of the **README.md** file with properly formatted equations using LaTeX syntax that can be rendered on GitHub (through tools like MathJax):
+# **Spectral Estimation Methods with MATLAB DTMF**
+
+## **Overview**
+This project explores spectral estimation techniques for sinusoidal signal reconstruction in noisy environments. It is implemented in MATLAB and focuses on:
+1. **DTMF Signal Generation**:
+   - Simulating Dual Tone Multi-Frequency (DTMF) signals used in telecommunications.
+   - Adding Gaussian noise to simulate real-world conditions.
+2. **Pisarenko Spectral Method**:
+   - Estimating frequencies of noisy signals using the subspace method.
+3. **Frequency Analysis and Visualization**:
+   - Using covariance matrices and eigenvalue decomposition to detect signal frequencies.
+
+This project demonstrates the theoretical foundations of spectral estimation and its practical implementation in MATLAB.
 
 ---
 
-# **Spectral Estimation Methods with MATLAB**
-
-## **Overview**
-This project explores spectral estimation methods in MATLAB, focusing on the reconstruction of sinusoidal signal parameters in noisy environments. Key topics include:
-1. **DTMF Signal Simulation**: Dual Tone Multi-Frequency (DTMF) signal generation and analysis.
-2. **Pisarenko Spectral Estimation**: A subspace-based method to detect signal frequencies.
+## **Key Objectives**
+1. Simulate and analyze DTMF signals for real-world applications.
+2. Apply Pisarenko's method to estimate frequencies in noisy environments.
+3. Visualize signal spectra to interpret frequency components.
 
 ---
 
 ## **Key Features**
-1. **DTMF Signal Simulation**:
-   - Generate DTMF signals corresponding to phone numbers.
-   - Add Gaussian noise with configurable variance and Signal-to-Noise Ratio (SNR).
-2. **Pisarenko Spectral Estimation**:
-   - Identify dominant frequencies of noisy signals using eigenvalue decomposition.
-3. **Visualization**:
-   - Plot time-domain signals and frequency spectra.
+### **1. DTMF Signal Simulation**
+- Generates DTMF signals for user-provided input (e.g., phone numbers).
+- Combines sinusoidal components for each keypress.
+- Allows customization of sampling frequency, SNR, and noise variance.
+
+### **2. Pisarenko Spectral Estimation**
+- Uses covariance matrices and eigenvalue decomposition to estimate signal frequencies.
+- Detects dominant frequencies in noisy signals.
+
+### **3. Noise Modeling**
+- Adds Gaussian noise to simulate real-world scenarios.
+- Supports varying noise levels controlled by variance and SNR.
+
+### **4. Frequency Visualization**
+- Plots signal spectra to identify and compare frequencies.
+- Demonstrates the efficiency of the Pisarenko method for spectral analysis.
 
 ---
 
 ## **Technologies**
-- MATLAB for signal generation, noise modeling, and spectral analysis.
+- **MATLAB**: Used for signal generation, noise modeling, and spectral estimation.
 
 ---
 
 ## **Theoretical Background**
 
-### **1. Auto-Regressive Models**
-An AR signal \( x_t \) is modeled as:
-\[
-x_t = -\sum_{k=1}^{p} a_k x_{t-k} + \epsilon_t
-\]
-where:
-- \( a_k \): AR coefficients.
-- \( \epsilon_t \): White noise with mean zero and variance \( \sigma^2 \).
+### **1. DTMF Signal Model**
+A DTMF signal combines two sinusoidal tones:
 
-### **2. DTMF Signal**
-The DTMF signal is generated as a sum of two sinusoidal components:
-\[
-s(t) = a_1 \sin(2\pi f_1 t) + a_2 \sin(2\pi f_2 t)
-\]
-where:
-- \( f_1 \) and \( f_2 \): Frequencies of the two tones.
-- \( t \): Time vector.
+$$s(t) = a_1 \sin(2\pi f_1 t) + a_2 \sin(2\pi f_2 t) + w(t)$$
 
-### **3. Covariance Matrix for Pisarenko Method**
-The covariance matrix \( R_u \) for a signal \( u(n) \) is given by:
-\[
-R_u = E P E^H + \sigma_w^2 I
-\]
-where:
-- \( E \): Matrix of eigenvectors for the signal space.
-- \( P \): Diagonal matrix of signal powers.
-- \( \sigma_w^2 \): Variance of the noise.
-- \( I \): Identity matrix.
+Where:
+- $f_1$ and $f_2$: Frequencies of the two tones.
+- $a_1$ and $a_2$: Amplitudes of the tones.
+- $w(t)$: Additive Gaussian noise.
+
+### 2. Covariance Matrix
+
+The covariance matrix for the signal $u(n)$ is:
+
+$$R_u = EPE^H + \sigma_w^2 I$$
+
+Where:
+- $E$: Matrix of eigenvectors.
+- $P$: Diagonal matrix of signal powers.
+- $\sigma_w^2$: Noise variance.
+- $I$: Identity matrix.
+
+### 3. Pisarenko Method
+
+Pisarenko's method leverages the smallest eigenvector to estimate frequencies. Using a Toeplitz matrix for covariance:
+
+$$R_u = \text{toeplitz}([r_0, r_1, ..., r_{p-1}])$$
+
+Frequencies are extracted from eigenvalues and eigenvectors.
 
 ---
 
 ## **Project Structure**
 ```
 Spectral-Estimation/
-├── README.md               # Project description
-├── LICENSE                 # Licensing information
-├── data/                   # Input and output data (e.g., signal data)
-├── src/                    # MATLAB scripts
-│   ├── dtmf_signal.m       # Script for DTMF signal generation
-│   ├── add_noise.m         # Script to add noise to signals
-│   ├── pisarenko_method.m  # Pisarenko spectral estimation
-│   ├── analyze_signal.m    # End-to-end analysis
-└── images/                 # Saved plots for README
+├── README.md                 # Project description and instructions
+├── LICENSE                   # Licensing information
+├── data/                     # Input data (e.g., signal data)
+├── src/                      # MATLAB scripts
+│   ├── dtmf_signal.m         # Script for generating DTMF signals
+│   ├── add_noise.m           # Script for adding noise to signals
+│   ├── pisarenko_method.m    # Pisarenko spectral estimation
+│   ├── analyze_signal.m      # Comprehensive analysis
+└── images/                   # Saved plots for documentation
 ```
 
 ---
 
-## **Getting Started**
+## **Setup and Installation**
 
 ### **Prerequisites**
-- MATLAB (R2021a or newer) with the Signal Processing Toolbox.
+- MATLAB (R2021a or newer) with Signal Processing Toolbox.
 
 ### **Setup**
 1. Clone the repository:
@@ -87,72 +107,37 @@ Spectral-Estimation/
    git clone https://github.com/amenallah01/Spectral-Estimation.git
    cd Spectral-Estimation
    ```
-2. Place any required input data (e.g., signal files) in the `data/` directory.
+2. Place input data (if required) in the `data/` folder.
 
 ---
 
-## **Scripts Overview**
+## **Running the Scripts**
 
-### **1. `dtmf_signal.m`**
-Generates a DTMF signal based on user input (e.g., a phone number). The signal combines two frequencies for each key, defined as:
-\[
-s(t) = a_1 \sin(2\pi f_1 t) + a_2 \sin(2\pi f_2 t) + w(t)
-\]
-Where \( w(t) \) is Gaussian noise.
+### **1. Generate DTMF Signal**
+Run `dtmf_signal.m`:
+- Input: Phone number and signal parameters (sampling frequency, noise variance, SNR).
+- Output: Time-domain DTMF signal.
 
----
+### **2. Add Noise**
+Run `add_noise.m`:
+- Input: Clean DTMF signal.
+- Output: Noisy signal.
 
-### **2. `add_noise.m`**
-Adds Gaussian noise to a clean signal:
-\[
-u(t) = s(t) + w(t)
-\]
-Where:
-- \( s(t) \): Clean signal.
-- \( w(t) \): Gaussian noise with variance \( \sigma^2 \).
+### **3. Frequency Estimation**
+Run `pisarenko_method.m`:
+- Input: Noisy signal.
+- Output: Estimated frequencies and spectrum plot.
 
----
-
-### **3. `pisarenko_method.m`**
-Uses the Pisarenko method to estimate signal frequencies. Steps include:
-1. Construct the covariance matrix:
-   \[
-   R_u = \text{toeplitz}([r_0, r_1, \ldots, r_{p-1}])
-   \]
-   where \( r_i \) is the autocorrelation of \( u(t) \).
-2. Compute eigenvalues and eigenvectors:
-   \[
-   R_u v = \lambda v
-   \]
-3. Identify frequencies from the smallest eigenvector.
-
----
-
-### **4. `analyze_signal.m`**
-Combines all steps:
-1. Generate a DTMF signal.
-2. Add noise to the signal.
-3. Apply the Pisarenko method for frequency estimation.
-4. Plot and analyze the results.
+### **4. Comprehensive Analysis**
+Run `analyze_signal.m`:
+- Performs end-to-end analysis from signal generation to frequency estimation.
 
 ---
 
 ## **Applications**
-- **Telecommunication**: Simulate and analyze DTMF signaling.
-- **Signal Processing**: Apply spectral estimation techniques to noisy data.
-- **Real-World Noise Scenarios**: Test methods for robust frequency detection.
-
----
-
-## **Adding Visuals**
-Use MATLAB to save plots:
-```matlab
-saveas(gcf, 'images/plot_name.png');
-```
-Include them in the README with:
-```markdown
-![Description](images/plot_name.png "Optional Title")
-```
+1. **Telecommunication**: Simulates and analyzes DTMF signaling.
+2. **Signal Processing**: Demonstrates robust spectral estimation for noisy signals.
+3. **Real-World Noise Scenarios**: Tests algorithms for reliable frequency detection.
 
 ---
 
@@ -162,8 +147,8 @@ This project is licensed under the MIT License.
 ---
 
 ## **Acknowledgments**
-Special thanks to **Université Paris-Saclay** and **Mohammed El-Korso** for the guidance and theoretical foundation provided in this project.
+Special thanks to **Université Paris-Saclay** and **Mohammed El-Korso** for the guidance provided in this project.
 
 ---
 
-This improved version correctly represents the mathematical equations and provides clarity for GitHub readers. Let me know if you'd like further refinements or assistance!
+Let me know if you need help refining the scripts, adding visualizations, or customizing the documentation!
