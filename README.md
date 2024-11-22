@@ -85,13 +85,9 @@ Frequencies are extracted from eigenvalues and eigenvectors.
 Spectral-Estimation/
 ├── README.md                 # Project description and instructions
 ├── LICENSE                   # Licensing information
-├── data/                     # Input data (e.g., signal data)
 ├── src/                      # MATLAB scripts
 │   ├── dtmf_signal.m         # Script for generating DTMF signals
-│   ├── add_noise.m           # Script for adding noise to signals
-│   ├── pisarenko_method.m    # Pisarenko spectral estimation
-│   ├── analyze_signal.m      # Comprehensive analysis
-└── images/                   # Saved plots for documentation
+│   └── analyze_signal.m      # Comprehensive analysis
 ```
 
 ---
