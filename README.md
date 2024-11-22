@@ -92,22 +92,6 @@ Spectral-Estimation/
 ```
 ---
 
-## **Setup and Installation**
-
-### **Prerequisites**
-- MATLAB (R2021a or newer) with Signal Processing Toolbox.
-
-### **Setup**
-1. Clone the repository:
-bash
-```
-   git clone https://github.com/amenallah01/Spectral-Estimation.git
-   cd Spectral-Estimation
-```
-2. Place input data (if required) in the data/ folder.
-
----
-
 ## **Running the Scripts**
 
 ### **1. Generate DTMF Signal**
